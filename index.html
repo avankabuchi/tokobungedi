@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toko Bung Edi - Grosir & Eceran Kebutuhan Harian</title>
     <meta name="description" content="Toko Grosir & Eceran terlengkap di Karangturi, Kroya. Melayani kebutuhan harian, Agen BRI Link, top up e-wallet, token listrik, dan lainnya.">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         /* Mengimpor Font dari Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap');
@@ -36,10 +35,9 @@
             font-family: 'Roboto', sans-serif;
             color: var(--dark-gray);
             line-height: 1.6;
-            background-color: var(--white);
         }
 
-        /* Utilitas & Animasi */
+        /* Utilitas */
         .container {
             max-width: 1100px;
             margin: auto;
@@ -52,8 +50,8 @@
             font-weight: 600;
         }
 
-        h1 { font-size: clamp(2.5rem, 5vw, 3rem); }
-        h2 { font-size: clamp(2rem, 4vw, 2.5rem); color: var(--dark-gray); text-align: center; margin-bottom: 1.5rem; padding-bottom: 10px; border-bottom: 3px solid var(--primary-yellow); display: inline-block; }
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.5rem; color: var(--dark-gray); text-align: center; margin-bottom: 1.5rem; padding-bottom: 10px; border-bottom: 3px solid var(--primary-yellow); display: inline-block; }
         h3 { font-size: 1.8rem; color: var(--primary-blue); margin-bottom: 1rem; }
 
         section {
@@ -61,26 +59,13 @@
         }
         
         section#hero {
-            padding: 8rem 0; /* Increased padding for more space */
+            padding: 6rem 0;
         }
 
         .section-title-wrapper {
             text-align: center;
             margin-bottom: 3rem;
         }
-        
-        /* Reveal on scroll animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
 
         /* Tombol Aksi (CTA) */
         .cta-button {
@@ -106,17 +91,22 @@
             margin-right: 10px;
         }
 
-        /* Header / Navbar */
+        /* Header / Navbar -- MODIFIED */
         .navbar {
-            background: rgba(255, 255, 255, 0.9);
+            background: transparent; /* Made transparent by default */
             color: var(--dark-gray);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            backdrop-filter: blur(5px);
+            transition: background-color 0.4s ease, box-shadow 0.4s ease; /* Added transition */
+        }
+        
+        .navbar.scrolled {
+             background: rgba(255, 255, 255, 0.95); /* White background on scroll */
+             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+             backdrop-filter: blur(5px);
         }
 
         .navbar .container {
@@ -145,40 +135,37 @@
             text-decoration: none;
             color: var(--dark-gray);
             font-weight: 500;
-            padding-bottom: 5px;
+            padding: 8px 4px;
             border-bottom: 2px solid transparent;
-            transition: border-color 0.3s, color 0.3s;
+            transition: border-color 0.3s;
+        }
+        
+        /* Change nav link color on transparent vs scrolled header */
+        .navbar ul li a {
+            color: var(--white); /* White text on hero */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        .navbar.scrolled ul li a {
+            color: var(--dark-gray); /* Dark text on white background */
+            text-shadow: none;
         }
 
-        .navbar ul li a:hover, .navbar ul li a.active {
+        .navbar ul li a:hover {
             border-color: var(--primary-green);
-            color: var(--primary-green);
         }
         
-        /* Hamburger Menu Icon */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 5px;
-        }
-        
-        .menu-toggle .bar {
-            width: 25px;
-            height: 3px;
-            background-color: var(--dark-gray);
-            margin: 4px 0;
-            transition: 0.4s;
+        .navbar.scrolled .logo {
+            color: var(--primary-green); /* Ensure logo color is correct on scroll */
         }
 
 
-        /* Hero Section */
+        /* Hero Section -- MODIFIED */
         #hero {
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1584680226833-0d680d0a7a97?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
             color: var(--white);
             text-align: center;
+            /* Added min-height to ensure full visibility on load */
+            min-height: 100vh; 
             display: flex;
             align-items: center;
             justify-content: center;
@@ -186,14 +173,23 @@
         
         #hero h1 {
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem; /* Adjusted margin */
             text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
         }
 
-        #hero p {
-            font-size: 1.3rem;
+        /* NEW STYLE for slogan */
+        #hero .slogan {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+        }
+
+        #hero .description {
+            font-size: 1.2rem;
             max-width: 600px;
-            margin: 0 auto 2rem auto;
+            margin: 0 auto 2.5rem auto; /* Adjusted margin */
             font-weight: 400;
         }
 
@@ -217,15 +213,47 @@
         #about h3 {
             color: var(--dark-gray);
         }
+        
+        /* Why Us Section */
+        #why-us {
+            background: var(--light-gray);
+        }
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            text-align: center;
+        }
+        .why-us-card {
+            background: var(--white);
+            padding: 2rem 1rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .why-us-card:hover {
+            transform: translateY(-5px);
+        }
+        .why-us-card .icon {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+        .why-us-card h3 {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            font-family: 'Poppins';
+            font-weight: 600;
+        }
 
         /* Services Section */
         #services {
-            background: var(--light-gray);
+            background: #FFFFFF;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* More responsive grid */
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -235,6 +263,7 @@
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--light-gray);
             transition: transform 0.3s, box-shadow 0.3s;
         }
         
@@ -245,7 +274,6 @@
 
         .service-card ul {
             list-style: none;
-            padding-left: 0;
         }
 
         .service-card li {
@@ -264,11 +292,47 @@
         
         .service-card .icon {
             font-size: 3rem;
+            color: var(--primary-blue);
             margin-bottom: 1rem;
         }
         
-        .service-card .icon-shop { color: var(--primary-green); }
-        .service-card .icon-digital { color: var(--primary-blue); }
+        .service-card .icon-shop {
+            color: var(--primary-green);
+        }
+
+        /* Testimonials Section */
+        #testimonials {
+            background: var(--light-gray);
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .testimonial-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+        }
+        .testimonial-card .stars {
+            color: var(--primary-yellow);
+            margin-bottom: 1rem;
+        }
+        .testimonial-card blockquote {
+            border-left: 4px solid var(--primary-green);
+            padding-left: 1rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        .testimonial-card .customer-name {
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            text-align: right;
+        }
 
 
         /* Location Section */
@@ -331,54 +395,49 @@
             margin: 0.5rem 0;
         }
         
+        /* Ikon Font Awesome untuk Tombol dan Layanan */
+        /* Anda perlu menambahkan link Font Awesome jika ingin ikonnya muncul */
+        
         /* Media Queries for Responsiveness */
+        @media (max-width: 992px) {
+             .testimonials-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
-            .navbar .menu-toggle {
-                display: flex;
-                z-index: 1001; /* Ensure it's above the nav list */
-            }
-
-            .navbar .nav-links {
-                display: flex;
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            
+            /* Responsive navbar adjustments */
+            .navbar.scrolled .container {
                 flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                position: fixed;
-                top: 0;
-                right: 0;
+            }
+             .navbar:not(.scrolled) .container {
+                align-items: center; /* Vertically align items */
+            }
+             .navbar ul {
+                padding-top: 1rem;
+            }
+            .navbar.scrolled ul {
+                padding: 1rem 0;
+                flex-direction: column;
+                text-align: center;
                 width: 100%;
-                height: 100vh;
                 background-color: var(--white);
-                transform: translateX(100%);
-                transition: transform 0.3s ease-in-out;
             }
-            
-            .navbar .nav-links.active {
-                transform: translateX(0);
-            }
-
             .navbar ul li {
-                margin: 1.5rem 0;
+                margin: 0.5rem 0;
             }
-            
-            .navbar ul li a {
-                font-size: 1.5rem;
+             .navbar ul li a, .navbar.scrolled ul li a {
+                 color: var(--dark-gray); /* Force dark text in mobile dropdown */
+                 text-shadow: none;
             }
 
-            /* Animate hamburger to an 'X' */
-            .menu-toggle.active .bar:nth-child(1) {
-                transform: rotate(-45deg) translate(-7px, 6px);
-            }
-            .menu-toggle.active .bar:nth-child(2) {
-                opacity: 0;
-            }
-            .menu-toggle.active .bar:nth-child(3) {
-                transform: rotate(45deg) translate(-7px, -6px);
-            }
 
             #hero {
                 padding-top: 6rem;
-                padding-bottom: 4rem;
+                min-height: auto;
             }
             
             #about .container {
@@ -386,37 +445,51 @@
                 text-align: center;
             }
 
+            .why-us-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
             .services-grid {
                 grid-template-columns: 1fr;
             }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
         }
+
+         @media (max-width: 576px) {
+            .why-us-grid {
+                grid-template-columns: 1fr;
+            }
+         }
+
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
     <header class="navbar">
         <div class="container">
-            <a href="#" class="logo">Toko Bung Edi</a>
+            <div class="logo">Toko Bung Edi</div>
             <nav>
-                <ul class="nav-links">
+                <ul>
                     <li><a href="#about">Tentang Kami</a></li>
+                    <li><a href="#why-us">Mengapa Kami</a></li>
                     <li><a href="#services">Layanan</a></li>
+                    <li><a href="#testimonials">Testimoni</a></li>
                     <li><a href="#location">Lokasi</a></li>
                     <li><a href="#cta">Kontak</a></li>
                 </ul>
             </nav>
-            <button class="menu-toggle" aria-label="Toggle navigation menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
         </div>
     </header>
 
     <section id="hero">
-        <div class="container reveal">
+        <div class="container">
             <h1>Toko Bung Edi</h1>
-            <p>Grosir & Eceran Kebutuhan Harian Terlengkap di Karangturi. Plus Layanan Pembayaran Digital Serba Bisa!</p>
+            <p class="slogan">Belanja Hemat, Transaksi Cepat.</p>
+            <p class="description">Grosir & Eceran Kebutuhan Harian Terlengkap di Karangturi. Plus Layanan Pembayaran Digital Serba Bisa!</p>
             <a href="https://api.whatsapp.com/send?phone=6281327958234&text=Halo%20Toko%20Bung%20Edi,%20saya%20mau%20bertanya%20mengenai%20produk/layanan%20Anda." target="_blank" class="cta-button">
                 <i class="fab fa-whatsapp"></i> Hubungi Kami via WhatsApp
             </a>
@@ -425,13 +498,13 @@
 
     <section id="about">
         <div class="container">
-            <div class="about-image reveal">
+            <div class="about-image">
                 <img src="https://images.unsplash.com/photo-1543168256-418811576931?q=80&w=1974&auto=format&fit=crop" alt="Suasana Toko Bung Edi">
             </div>
-            <div class="about-content reveal">
+            <div class="about-content">
                 <h3>Selamat Datang di Toko Bung Edi!</h3>
                 <p>
-                    Kami adalah sahabat belanja Anda. Sejak pertama kali buka, komitmen kami adalah menyediakan berbagai kebutuhan pokok dan harian dengan kualitas terbaik dan harga yang bersahabat, baik untuk pembelian grosir maupun eceran.
+                    Kami adalah sahabat belanja Anda<strong></strong>. Sejak pertama kali buka, komitmen kami adalah menyediakan berbagai kebutuhan pokok dan harian dengan kualitas terbaik dan harga yang bersahabat, baik untuk pembelian grosir maupun eceran.
                 </p>
                 <p>
                     Kami percaya bahwa kemudahan adalah kunci, oleh karena itu kami juga hadir untuk memenuhi semua kebutuhan transaksi digital Anda dalam satu tempat yang aman dan terpercaya.
@@ -440,13 +513,43 @@
         </div>
     </section>
 
+    <section id="why-us">
+        <div class="container">
+            <div class="section-title-wrapper">
+                <h2>Mengapa Memilih Kami?</h2>
+            </div>
+            <div class="why-us-grid">
+                <div class="why-us-card">
+                    <div class="icon"><i class="fas fa-box-open"></i></div>
+                    <h3>Produk Lengkap</h3>
+                    <p>Dari sembako hingga layanan digital, semua ada di sini.</p>
+                </div>
+                <div class="why-us-card">
+                    <div class="icon"><i class="fas fa-tags"></i></div>
+                    <h3>Harga Bersahabat</h3>
+                    <p>Harga terbaik untuk pembelian grosir maupun eceran.</p>
+                </div>
+                <div class="why-us-card">
+                    <div class="icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Pelayanan Ramah</h3>
+                    <p>Kami selalu siap melayani setiap kebutuhan Anda dengan senyuman.</p>
+                </div>
+                <div class="why-us-card">
+                    <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h3>Lokasi Strategis</h3>
+                    <p>Mudah dijangkau di pusat Karangturi, Kroya.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="services">
         <div class="container">
-            <div class="section-title-wrapper reveal">
+            <div class="section-title-wrapper">
                 <h2>Semua yang Anda Butuhkan</h2>
             </div>
             <div class="services-grid">
-                <div class="service-card reveal">
+                <div class="service-card">
                     <div class="icon icon-shop"><i class="fas fa-shopping-basket"></i></div>
                     <h3>Belanja Kebutuhan Harian</h3>
                     <ul>
@@ -457,8 +560,8 @@
                         <li>Pembelian Grosir & Eceran</li>
                     </ul>
                 </div>
-                <div class="service-card reveal">
-                    <div class="icon icon-digital"><i class="fas fa-mobile-alt"></i></div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-mobile-alt"></i></div>
                     <h3>Layanan Digital & Pembayaran</h3>
                     <ul>
                         <li><strong>BRI Link:</strong> Tarik Tunai & Transfer Antar Bank</li>
@@ -471,23 +574,53 @@
         </div>
     </section>
     
-    <section id="location">
+    <section id="testimonials">
         <div class="container">
-             <div class="section-title-wrapper reveal">
-                <h2>Kunjungi Kami Langsung!</h2>
+            <div class="section-title-wrapper">
+                <h2>Kata Pelanggan Kami</h2>
             </div>
-            <div class="location-content reveal">
-                <p><strong>Alamat:</strong> Jalan Turonggo, Karangturi, Kecamatan Kroya, Kabupaten Cilacap, Jawa Tengah.</p>
-                <p><strong>Jam Operasional:</strong> Setiap Hari, 08.00 - 20.00 WIB</p>
-                <div class="map-container">
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.3251899967927!2d109.21953517486831!3d-7.6481377756621445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e65404dbd8bf087%3A0xd5fe154f95aac835!2sEdi%20Cell!5e0!3m2!1sid!2sid!4v1752821894651!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>Barangnya lengkap banget, dari kebutuhan dapur sampai mau bayar listrik semua bisa di sini. Pelayanannya juga ramah dan cepat. Jadi langganan terus!</blockquote>
+                    <p class="customer-name">- Ibu Sutinah, Karangturi</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <blockquote>Sangat membantu, apalagi ada BRI Link jadi tidak perlu jauh-jauh ke ATM untuk tarik tunai. Harganya juga lebih murah dibanding toko lain. Recommended!</blockquote>
+                    <p class="customer-name">- Bapak Agus, Kroya</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>Tempat belanja andalan kalau lagi butuh apa-apa mendadak. Jam bukanya juga sampai malam, jadi sangat fleksibel. Sukses terus Toko Bung Edi!</blockquote>
+                    <p class="customer-name">- Mba Riska, Pelanggan Setia</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <section id="location">
+        <div class="container">
+             <div class="section-title-wrapper">
+                <h2>Kunjungi Kami Langsung!</h2>
+            </div>
+            <div class="location-content">
+                <p><strong>Alamat:</strong> Jalan Turonggo, Karangturi, Kecamatan Kroya, Kabupaten Cilacap, Jawa Tengah.</p>
+                <p><strong>Jam Operasional:</strong> Setiap Hari, 08.00 - 20.00 WIB</p>
+                <div class="map-container">
+                   <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1977.157783685839!2d109.221388!3d-7.649176!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e65404dbd8bf087%3A0xd5fe154f95aac835!2sEdi%20Cell!5e0!3m2!1sid!2sid!4v1752820971559!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
     <section id="cta">
-        <div class="container reveal">
+        <div class="container">
             <div class="section-title-wrapper">
                  <h2>Punya Pertanyaan atau Mau Pesan?</h2>
             </div>
@@ -504,42 +637,19 @@
             <p>Jalan Turonggo, Karangturi, Kroya, Cilacap | Telp: 0813-2795-8234</p>
         </div>
     </footer>
-
+    
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile Menu Toggle
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
-
-            menuToggle.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                menuToggle.classList.toggle('active');
-            });
-
-            // Close menu when a link is clicked
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                    menuToggle.classList.remove('active');
-                });
-            });
-
-            // Reveal on scroll
-            const revealElements = document.querySelectorAll('.reveal');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-
-            revealElements.forEach(el => {
-                observer.observe(el);
+        document.addEventListener('DOMContentLoaded', function () {
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 50) { // Add 'scrolled' class after 50px scroll
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
             });
         });
     </script>
+
 </body>
 </html>
