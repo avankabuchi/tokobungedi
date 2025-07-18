@@ -35,7 +35,7 @@
             font-family: 'Roboto', sans-serif;
             color: var(--dark-gray);
             line-height: 1.6;
-            background-color: var(--white); /* Added for consistent background */
+            background-color: var(--white);
         }
 
         /* Utilitas */
@@ -134,6 +134,7 @@
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--primary-green);
+            text-decoration: none;
             z-index: 10;
         }
         
@@ -661,7 +662,7 @@
                     <p><strong>Alamat:</strong> Jalan Turonggo, Karangturi, Kecamatan Kroya, Kabupaten Cilacap, Jawa Tengah.</p>
                     <p><strong>Jam Operasional:</strong> Setiap Hari, 08.00 - 20.00 WIB</p>
                     <div class="map-container">
-                       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.3251899967927!2d109.2195351748683!3d-7.648137775662145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e65404dbd8bf087%3A0xd5fe154f95aac835!2sEdi%20Cell!5e0!3m2!1sid!2sid!4v1752824166590!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.353320202928!2d109.255577174917!3d-7.536551192476295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e65451e06497339%3A0x67a36c867252875b!2sJl.%20Turonggo%2C%20Karangturi%2C%20Kec.%20Kroya%2C%20Kabupaten%20Cilacap%2C%20Jawa%20Tengah%2053282!5e0!3m2!1sid!2sid!4v1721374567406!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
@@ -689,6 +690,10 @@
     
     <script>
     document.addEventListener('DOMContentLoaded', function () {
+
+        // --- PERBAIKAN: Memastikan halaman selalu dimulai dari atas ---
+        window.scrollTo(0, 0);
+
         const navbar = document.querySelector('.navbar');
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
