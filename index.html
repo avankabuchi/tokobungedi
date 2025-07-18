@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Bung Edi - Grosir & Eceran Kebutuhan Harian</title>
+    <meta name="description" content="Toko Grosir & Eceran terlengkap di Karangturi, Kroya. Melayani kebutuhan harian, Agen BRI Link, top up e-wallet, token listrik, dan lainnya.">
+    <style>
+        /* Mengimpor Font dari Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap');
+
+        /* Variabel Warna */
+        :root {
+            --primary-green: #4CAF50;
+            --hover-green: #45a049;
+            --primary-blue: #2196F3;
+            --primary-yellow: #FFC107;
+            --dark-gray: #333333;
+            --light-gray: #f4f4f4;
+            --white: #FFFFFF;
+        }
+
+        /* Reset & Gaya Dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        /* Utilitas */
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 2rem;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.5rem; color: var(--dark-gray); text-align: center; margin-bottom: 1.5rem; padding-bottom: 10px; border-bottom: 3px solid var(--primary-yellow); display: inline-block; }
+        h3 { font-size: 1.8rem; color: var(--primary-blue); margin-bottom: 1rem; }
+
+        section {
+            padding: 4rem 0;
+        }
+        
+        section#hero {
+            padding: 6rem 0;
+        }
+
+        .section-title-wrapper {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* Tombol Aksi (CTA) */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            background-color: var(--hover-green);
+            transform: translateY(-3px);
+        }
+
+        .cta-button i {
+            margin-right: 10px;
+        }
+
+        /* Header / Navbar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--dark-gray);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar ul li {
+            margin-left: 20px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .navbar ul li a:hover {
+            border-color: var(--primary-green);
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1584680226833-0d680d0a7a97?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+        }
+        
+        #hero h1 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+
+        #hero p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            font-weight: 400;
+        }
+
+        /* About Section */
+        #about .container {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        #about .about-content, #about .about-image {
+            flex: 1;
+        }
+
+        #about .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        #about h3 {
+            color: var(--dark-gray);
+        }
+
+        /* Services Section */
+        #services {
+            background: var(--light-gray);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+        }
+
+        .service-card ul {
+            list-style: none;
+        }
+
+        .service-card li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .service-card li::before {
+            content: '✓';
+            color: var(--primary-green);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+        
+        .service-card .icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .service-card .icon-shop {
+            color: var(--primary-green);
+        }
+
+
+        /* Location Section */
+        #location .location-content {
+            text-align: center;
+        }
+
+        #location .map-container {
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        #location iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        #location p {
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        /* CTA Section */
+        #cta {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            text-align: center;
+        }
+        
+        #cta h2 {
+            color: var(--white);
+            border-color: var(--primary-yellow);
+        }
+
+        #cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+        
+        /* Ikon Font Awesome untuk Tombol dan Layanan */
+        /* Anda perlu menambahkan link Font Awesome jika ingin ikonnya muncul */
+        
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            
+            .navbar .container {
+                flex-direction: column;
+            }
+
+            .navbar ul {
+                padding: 1rem 0;
+                flex-direction: column;
+                text-align: center;
+                width: 100%;
+            }
+
+            .navbar ul li {
+                margin: 0.5rem 0;
+            }
+
+            #hero {
+                padding: 4rem 0;
+            }
+            
+            #about .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">Toko Bung Edi</div>
+            <nav>
+                <ul>
+                    <li><a href="#about">Tentang Kami</a></li>
+                    <li><a href="#services">Layanan</a></li>
+                    <li><a href="#location">Lokasi</a></li>
+                    <li><a href="#cta">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <h1>Toko Bung Edi</h1>
+            <p>Grosir & Eceran Kebutuhan Harian Terlengkap di Karangturi. Plus Layanan Pembayaran Digital Serba Bisa!</p>
+            <a href="https://api.whatsapp.com/send?phone=6281327958234&text=Halo%20Toko%20Bung%20Edi,%20saya%20mau%20bertanya%20mengenai%20produk/layanan%20Anda." target="_blank" class="cta-button">
+                <i class="fab fa-whatsapp"></i> Hubungi Kami via WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1543168256-418811576931?q=80&w=1974&auto=format&fit=crop" alt="Suasana Toko Bung Edi">
+            </div>
+            <div class="about-content">
+                <h3>Selamat Datang di Toko Bung Edi!</h3>
+                <p>
+                    Kami adalah sahabat belanja Anda<strong></strong>. Sejak pertama kali buka, komitmen kami adalah menyediakan berbagai kebutuhan pokok dan harian dengan kualitas terbaik dan harga yang bersahabat, baik untuk pembelian grosir maupun eceran.
+                </p>
+                <p>
+                    Kami percaya bahwa kemudahan adalah kunci, oleh karena itu kami juga hadir untuk memenuhi semua kebutuhan transaksi digital Anda dalam satu tempat yang aman dan terpercaya.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="section-title-wrapper">
+                <h2>Semua yang Anda Butuhkan</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon icon-shop"><i class="fas fa-shopping-basket"></i></div>
+                    <h3>Belanja Kebutuhan Harian</h3>
+                    <ul>
+                        <li>Beras & Sembako (minyak, gula, telur)</li>
+                        <li>Makanan & Minuman ringan</li>
+                        <li>Aneka Bumbu Dapur</li>
+                        <li>Perlengkapan Mandi & Cuci</li>
+                        <li>Pembelian Grosir & Eceran</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>Layanan Digital & Pembayaran</h3>
+                    <ul>
+                        <li><strong>BRI Link:</strong> Tarik Tunai & Transfer Antar Bank</li>
+                        <li><strong>Top Up E-Wallet:</strong> DANA, GoPay, ShopeePay, dll.</li>
+                        <li><strong>Bayar Listrik:</strong> Token Prabayar & Tagihan Bulanan</li>
+                        <li>Aman, Cepat, dan Mudah</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="location">
+        <div class="container">
+             <div class="section-title-wrapper">
+                <h2>Kunjungi Kami Langsung!</h2>
+            </div>
+            <div class="location-content">
+                <p><strong>Alamat:</strong> Jalan Turonggo, Karangturi, Kecamatan Kroya, Kabupaten Cilacap, Jawa Tengah.</p>
+                <p><strong>Jam Operasional:</strong> Setiap Hari, 08.00 - 20.00 WIB</p>
+                <div class="map-container">
+                   <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1977.157783685839!2d109.221388!3d-7.649176!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e65404dbd8bf087%3A0xd5fe154f95aac835!2sEdi%20Cell!5e0!3m2!1sid!2sid!4v1752820971559!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta">
+        <div class="container">
+            <div class="section-title-wrapper">
+                 <h2>Punya Pertanyaan atau Mau Pesan?</h2>
+            </div>
+            <p>Klik tombol di bawah untuk langsung terhubung dengan kami melalui WhatsApp. Kami siap melayani Anda!</p>
+            <a href="https://api.whatsapp.com/send?phone=6281327958234&text=Halo%20Toko%20Bung%20Edi,%20saya%20mau%20bertanya%20mengenai%20produk/layanan%20Anda." target="_blank" class="cta-button">
+                 <i class="fab fa-whatsapp"></i> Chat via WhatsApp Sekarang
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Toko Bung Edi. Semua Hak Dilindungi.</p>
+            <p>Jalan Turonggo, Karangturi, Kroya, Cilacap | Telp: 0813-2795-8234</p>
+        </div>
+    </footer>
+
+</body>
+</html>
